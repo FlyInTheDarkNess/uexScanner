@@ -43,6 +43,7 @@ typedef void (^uexScannerCompletionBlock)(NSString *scanResult,NSString *codeTyp
 @property (nonatomic,assign)uexScannerEncodingC charset;
 @property (nonatomic,strong)UIImageView *lineView;
 @property (nonatomic,assign)float frequency;
+@property (nonatomic,assign) BOOL ShowPicker; // No 不显示 YES 显示 是否显示相册
 
 
 //AVCaptureOutput

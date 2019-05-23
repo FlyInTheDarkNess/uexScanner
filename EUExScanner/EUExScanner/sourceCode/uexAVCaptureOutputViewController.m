@@ -257,9 +257,15 @@ static CGFloat kUexScannerPromptMaxWidth                    = 300;
     [bottomToolbar setBarStyle:UIBarStyleBlack];
     [bottomToolbar setTintColor:[UIColor whiteColor]];
     //[bottomToolbar setTranslucent:NO];
-    [bottomToolbar setItems:@[[self toolbarItemWithImageName:@"ocr_flash-off" action:@selector(lightButtonClicked:)],
-                             [self flexibleSpaceItem],
-                              [self toolbarItemWithImageName:@"ocr_albums" action:@selector(albumButtonClicked:)]]];
+    if (_ShowPicker) { //yes 显示
+        [bottomToolbar setItems:@[[self toolbarItemWithImageName:@"ocr_flash-off" action:@selector(lightButtonClicked:)],
+                                  [self flexibleSpaceItem],
+                                  [self toolbarItemWithImageName:@"ocr_albums" action:@selector(albumButtonClicked:)]]];
+    }else{  //no 显示
+        [bottomToolbar setItems:@[[self toolbarItemWithImageName:@"ocr_flash-off" action:@selector(lightButtonClicked:)],
+                                  [self flexibleSpaceItem]]];
+    }
+    
     [self.view addSubview:bottomToolbar];
 }
 
@@ -576,7 +582,7 @@ static CGFloat kUexScannerPromptMaxWidth                    = 300;
             transformedVideoRect.origin.x += (scaleVideo * videoSizeY - self.view.frame.size.width) / 2;
         }
     }
-    CGAffineTransform captureSizeTransform = CGAffineTransformMakeScale(1/scaleVideo, 1/scaleVideo);
+    CGAffineTransform captureSizeTransform = CGAffineTransformMakeScale(1.2, 1.2);
     self.ZXingCapture.scanRect = CGRectApplyAffineTransform(transformedVideoRect, captureSizeTransform);
     
     self.preview.bounds = CGRectApplyAffineTransform(transformedVideoRect, captureSizeTransform);

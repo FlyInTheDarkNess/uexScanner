@@ -154,6 +154,12 @@
         else{
             scanner.frequency = 1.5;
         }
+        if([self.jsonDict objectForKey:@"isGallery"]){
+            scanner.ShowPicker = [[self.jsonDict objectForKey:@"isGallery"] boolValue];
+        }
+        else{
+            scanner.ShowPicker = YES; //默认显示相册按钮
+        }
         
         [[self.webViewEngine viewController] presentViewController:scanner animated:YES completion:nil];
 
